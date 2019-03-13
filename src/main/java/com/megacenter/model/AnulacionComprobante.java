@@ -12,10 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/**
- * AnulacionComprobante
- * @author USER
- */
+
 @Table( name= "anulacioncomprobante")
 @Entity
 public class AnulacionComprobante  {
