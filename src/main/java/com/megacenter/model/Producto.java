@@ -31,7 +31,7 @@ public class Producto {
     @Column(name = "codigo" , length = 100 , unique = true )
     private String codigo ; 
     
-    @Column ( name = "numProducto" , length =200)
+    @Column ( name = "numProducto" , length =200 )
     private String numProducto ;
     
     @Column (name = "precioCompra" , precision = 16 , scale = 2)

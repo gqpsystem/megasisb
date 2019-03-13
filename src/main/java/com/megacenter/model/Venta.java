@@ -28,10 +28,10 @@ public class Venta {
     @Column (name = "idVenta")
     private int idVenta ;
     
-    @Column (name = "fechaVenta")
+    @Column (name = "fechaVenta", nullable = false)
     private Date fechaVenta ;
     
-    @Column (name = "montoTotalVenta" , precision = 16 ,scale = 2)
+    @Column (name = "montoTotalVenta" , precision = 16 ,scale = 2, nullable = false)
     private Double montoTotalVenta ;
     
     @Column ( name = "estadoPago" , length = 20)

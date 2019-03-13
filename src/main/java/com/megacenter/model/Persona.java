@@ -25,16 +25,16 @@ public class Persona {
     @Column ( name = "idPersona")
     private int idPersona ;
     
-    @Column ( name = "nombre" , length = 150 )
+    @Column ( name = "nombre" , length = 150 , nullable = false)
     private String nombre ;
     
     @Column (name = "apellido" , length = 100)
     private String apellido ;
     
-    @Column (name = "tipoDocumento" , length = 300)
+    @Column (name = "tipoDocumento" , length = 300, nullable = false)
     private String tipoDocumento ;
     
-    @Column (name = "numDocumento" , length = 20 , unique = true)
+    @Column (name = "numDocumento" , length = 20 , unique = true, nullable = false)
     private String numDocumento ;
     
     @Column (name = "telefono" , length = 20) 

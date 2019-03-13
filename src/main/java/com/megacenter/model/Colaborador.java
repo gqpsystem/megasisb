@@ -32,10 +32,10 @@ public class Colaborador {
     @Column(name = "tipoUsuario", length = 100)
     private String tipoUsuario;
 
-    @Column(name = "usuario", length = 150)
+    @Column(name = "usuario", length = 150 , nullable = false)
     private String usuario;
 
-    @Column(name = "contraseña", length = 150)
+    @Column(name = "contraseña", length = 150, nullable = false)
     private String contraseña;
 
     @Column(name = "fechaIngreso")
@@ -47,7 +47,7 @@ public class Colaborador {
     @Column(name = "sueldo", precision = 16, scale = 2)
     private Double sueldo;
 
-    @Column(name = "email", length = 150)
+    @Column(name = "email", length = 150, nullable = false)
     private String email;
 
     @Column(name = " estado", length = 10)

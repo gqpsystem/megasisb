@@ -50,7 +50,7 @@ public class CajaFuerte {
     private Caja caja ;
     
     @JoinColumn ( name = "responsable")
-    @ManyToOne
+    @OneToOne
     private Colaborador responsable ; // este en la tabla esta responsable
 
     public CajaFuerte() {

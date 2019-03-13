@@ -31,7 +31,7 @@ public class Caja {
     @Column (name = "fechaCierre")
     private Date fechaCierre;
     
-    @Column (name  = "Hora")
+    @Column (name  = "hora")
     private Time hora;
     
     @Column (name = "montoTotalRegistrado" , precision = 11 ,scale = 2)
