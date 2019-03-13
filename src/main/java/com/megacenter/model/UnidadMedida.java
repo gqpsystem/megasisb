@@ -1,63 +1,43 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.megacenter.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-/**
- *
- * @author USER
- */
+
 @Entity
-@Table (name = "unidadmedida")
+@Table(name = "unidadmedida")
 public class UnidadMedida {
-    
+
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column ( name = "idUnidad")
-    private int idUnidad ;
-    
-    @Column (name = "abreviatura" , length = 20)
-    private String abreviatura ; 
-    
-    @Column (name = "denominacion" , length = 50)
-    private String denominacion ;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idUnidadmedida;
 
-    public UnidadMedida() {
+    @Column(name = "codUnidadmedida", nullable = false, length = 20)
+    private String codUnidadmedida;
+
+    @Column(name = "descripcion", nullable = true, length = 50)
+    private String descripcion;
+
+    public int getIdUnidadmedida() {
+        return idUnidadmedida;
     }
 
-    public int getIdUnidad() {
-        return idUnidad;
+    public void setIdUnidadmedida(int idUnidadmedida) {
+        this.idUnidadmedida = idUnidadmedida;
     }
 
-    public void setIdUnidad(int idUnidad) {
-        this.idUnidad = idUnidad;
+    public String getCodUnidadmedida() {
+        return codUnidadmedida;
     }
 
-    public String getAbreviatura() {
-        return abreviatura;
+    public void setCodUnidadmedida(String codUnidadmedida) {
+        this.codUnidadmedida = codUnidadmedida;
     }
 
-    public void setAbreviatura(String abreviatura) {
-        this.abreviatura = abreviatura;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public String getDenominacion() {
-        return denominacion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
-
-    public void setDenominacion(String denominacion) {
-        this.denominacion = denominacion;
-    }
-    
-
-    
 }
