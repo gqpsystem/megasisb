@@ -49,9 +49,9 @@ public class CajaFuerte {
     @OneToOne
     private Caja caja ;
     
-    @JoinColumn ( name = "colaborador")
+    @JoinColumn ( name = "responsable")
     @ManyToOne
-    private Colaborador colaborador ; // este en la tabla esta responsable
+    private Colaborador responsable ; // este en la tabla esta responsable
 
     public CajaFuerte() {
     }
@@ -112,13 +112,14 @@ public class CajaFuerte {
         this.caja = caja;
     }
 
-    public Colaborador getColaborador() {
-        return colaborador;
+    public Colaborador getResponsable() {
+        return responsable;
     }
 
-    public void setColaborador(Colaborador colaborador) {
-        this.colaborador = colaborador;
+    public void setResponsable(Colaborador responsable) {
+        this.responsable = responsable;
     }
+
     
     
     

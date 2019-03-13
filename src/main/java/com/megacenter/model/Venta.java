@@ -20,13 +20,13 @@ import javax.persistence.Table;
  * @author USER
  */
 @Entity
-@Table ( name = "ticket")
-public class Ticket {
+@Table ( name = "venta")
+public class Venta {
     
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column (name = "idTicket")
-    private int idTicket ;
+    @Column (name = "idVenta")
+    private int idVenta ;
     
     @Column (name = "fechaVenta")
     private Date fechaVenta ;
@@ -53,9 +53,9 @@ public class Ticket {
     
     @JoinColumn ( name = "tipoComprobante")
     @ManyToOne
-    private TicketTipoComprobante Comprobante ;
+    private VentaTipoComprobante Comprobante ;
     
-    public Ticket() {
+    public Venta() {
     }
 
     public Cliente getCliente() {
@@ -74,21 +74,22 @@ public class Ticket {
         this.Colaborador = Colaborador;
     }
 
-    public TicketTipoComprobante getComprobante() {
+    public VentaTipoComprobante getComprobante() {
         return Comprobante;
     }
 
-    public void setComprobante(TicketTipoComprobante Comprobante) {
+    public void setComprobante(VentaTipoComprobante Comprobante) {
         this.Comprobante = Comprobante;
     }
 
-    public int getIdTicket() {
-        return idTicket;
+    public int getIdVenta() {
+        return idVenta;
     }
 
-    public void setIdTicket(int idTicket) {
-        this.idTicket = idTicket;
+    public void setIdVenta(int idVenta) {
+        this.idVenta = idVenta;
     }
+
 
     public Date getFechaVenta() {
         return fechaVenta;

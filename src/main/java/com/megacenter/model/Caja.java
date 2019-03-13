@@ -49,23 +49,21 @@ public class Caja {
     @Column ( name = "estadoCaja" , length = 50)
     private String estadoCaja; 
     
-    @JoinColumn ( name = "ticket")
+    @JoinColumn ( name = "venta")
     @ManyToOne
-    private Ticket ticket ; //esto en la tabla esta venta
+    private Venta venta ; //esto en la tabla esta venta
 
     public Caja() {
     }
 
-    public Ticket getTicket() {
-        return ticket;
+    public Venta getVenta() {
+        return venta;
     }
 
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
+    public void setVenta(Venta venta) {
+        this.venta = venta;
     }
 
-    
-    
     public int getIdCaja() {
         return idCaja;
     }

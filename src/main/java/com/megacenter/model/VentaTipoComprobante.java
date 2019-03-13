@@ -17,8 +17,8 @@ import javax.persistence.Table;
  * @author USER
  */
 @Entity
-@Table (name = "tickettipocomprobnte")
-public class TicketTipoComprobante {
+@Table (name = "ventatipocomprobnte")
+public class VentaTipoComprobante {
     
     @Id 
     @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -31,7 +31,7 @@ public class TicketTipoComprobante {
     @Column (name = "codigoCompro" , length = 50)
     private String codigoCompro ;
 
-    public TicketTipoComprobante() {
+    public VentaTipoComprobante() {
     }
 
     public int getIdTipoComprobante() {

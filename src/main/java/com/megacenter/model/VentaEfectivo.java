@@ -20,12 +20,12 @@ import javax.persistence.Table;
  * @author USER
  */
 @Entity
-@Table (name = "ticketefectivo")
-public class TicketEfectivo {
+@Table (name = "ventaefectivo")
+public class VentaEfectivo {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column (name = "idTicketEfectivo")
-    private int idTicketEfectivo ;
+    @Column (name = "idVentaEfectivo")
+    private int idVentaEfectivo ;
 
     @Column (name  = "estadoPago" , length = 60)
     private String estadoPago ;
@@ -33,21 +33,22 @@ public class TicketEfectivo {
     @Column (name = "montoPagado" , precision = 16 , scale = 2)
     private Double montoPagado ;
     
-    @JoinColumn  (name = "ticket")
+    @JoinColumn  (name = "venta")
     @OneToOne 
-    private Ticket ticket ;
+    private Venta venta ;
 
-    public TicketEfectivo() {
+    public VentaEfectivo() {
     }
 
-    public int getIdTicketEfectivo() {
-        return idTicketEfectivo;
+    public int getIdVentaEfectivo() {
+        return idVentaEfectivo;
     }
 
-    public void setIdTicketEfectivo(int idTicketEfectivo) {
-        this.idTicketEfectivo = idTicketEfectivo;
+    public void setIdVentaEfectivo(int idVentaEfectivo) {
+        this.idVentaEfectivo = idVentaEfectivo;
     }
 
+    
     public String getEstadoPago() {
         return estadoPago;
     }
@@ -64,12 +65,13 @@ public class TicketEfectivo {
         this.montoPagado = montoPagado;
     }
 
-    public Ticket getTicket() {
-        return ticket;
+    public Venta getVenta() {
+        return venta;
     }
 
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
+    public void setVenta(Venta venta) {
+        this.venta = venta;
     }
+
     
 }

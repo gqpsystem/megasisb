@@ -18,14 +18,14 @@ import javax.persistence.Table;
  *
  * @author USER
  */
-@Table (name = "ticketdetalle")
+@Table (name = "ventadetalle")
 @Entity
-public class TicketDetalle {
+public class VentaDetallle {
     
     @Id
     @GeneratedValue  (strategy = GenerationType.IDENTITY)
-    @Column (name = "idTicketDetalle")
-    private int idTicketDetalle ;
+    @Column (name = "idVentaDetalle")
+    private int idVentaDetalle ;
     
     @Column (name  = "precioVentaUnitario" , precision = 16 ,scale = 2)
     private Double precioVentaUnitario ;
@@ -43,21 +43,23 @@ public class TicketDetalle {
     @ManyToOne
     private Producto producto ;
     
-    @JoinColumn ( name = "ticket")
+    @JoinColumn ( name = "venta")
     @ManyToOne  
-    private Ticket ticket ;
+    private Venta venta ;
 
-    public TicketDetalle() {
+    public VentaDetallle() {
     }
 
-    public int getIdTicketDetalle() {
-        return idTicketDetalle;
+    public int getIdVentaDetalle() {
+        return idVentaDetalle;
     }
 
-    public void setIdTicketDetalle(int idTicketDetalle) {
-        this.idTicketDetalle = idTicketDetalle;
+    public void setIdVentaDetalle(int idVentaDetalle) {
+        this.idVentaDetalle = idVentaDetalle;
     }
 
+    
+    
     public Double getPrecioVentaUnitario() {
         return precioVentaUnitario;
     }
@@ -98,12 +100,12 @@ public class TicketDetalle {
         this.producto = producto;
     }
 
-    public Ticket getTicket() {
-        return ticket;
+    public Venta getVenta() {
+        return venta;
     }
 
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
+    public void setVenta(Venta venta) {
+        this.venta = venta;
     }
 
     

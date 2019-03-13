@@ -45,22 +45,23 @@ public class AnulacionComprobante  {
     @Column(name = "motivo" , length = 300)
     private String motivo ;
     
-    @JoinColumn ( name  = "ticket")
+    @JoinColumn ( name  = "venta")
     @ManyToOne
-    private Ticket ticket; // la variable se llama venta en tabla
+    private Venta venta; // la variable se llama venta en tabla
     
     public AnulacionComprobante() {
     
     
     }
 
-    public Ticket getTicket() {
-        return ticket;
+    public Venta getVenta() {
+        return venta;
     }
 
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
+    public void setVenta(Venta venta) {
+        this.venta = venta;
     }
+
     
     public int getIdAnulacion() {
         return idAnulacion;
