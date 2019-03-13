@@ -16,7 +16,7 @@ import javax.persistence.Table;
  * AnulacionComprobante
  * @author USER
  */
-@Table()
+@Table( name= "anulacioncomprobante")
 @Entity
 public class AnulacionComprobante  {
 
@@ -27,10 +27,10 @@ public class AnulacionComprobante  {
     @Column(name = "fechaEmision")
     private Date fechaEmision;
     
-    @Column( name = "tipoComprobante" , length = 50 )
+    @Column( name = "tipoComprobante" , length = 50 , nullable = false )
     private String tipoComprobante ;
 
-    @Column ( name  = "numComprobante" , length = 50)
+    @Column ( name  = "numComprobante" , length = 50, nullable = false)
     private String numComprobante ; 
     
     @Column (name = "importeTotal" , scale = 11, precision = 2)

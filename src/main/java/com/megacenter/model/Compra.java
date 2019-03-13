@@ -30,13 +30,13 @@ public class Compra {
     @Column(name = "fechaCompra")
     private Date fechaCompra;
 
-    @Column(name = "codigoCompra", length = 100)
+    @Column(name = "codigoCompra", length = 100, nullable = false)
     private String codigoCompra;
 
     @Column(name = "montoTotalCompra", precision = 16, scale = 2)
     private Double montoTotalCompra;
 
-    @Column(name = "numComprobante", length = 30)
+    @Column(name = "numComprobante", length = 30, nullable = false)
     private String numComprobante;
 
     @ManyToOne

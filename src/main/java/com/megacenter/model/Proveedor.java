@@ -27,7 +27,7 @@ public class Proveedor {
     @Column ( name = "idProvedor")
     private int idProvedor;
     
-    @Column ( name = "razonSocial" , length = 200)
+    @Column ( name = "razonSocial" , length = 200, nullable = false)
     private String razonSocial ;
     
     @Column ( name = "laboratorio", length = 100)
