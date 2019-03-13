@@ -13,17 +13,14 @@ public class NumberFormat {
         BigDecimal d = new BigDecimal(value).setScale(decimals, BigDecimal.ROUND_HALF_EVEN);
         return d;
     }
-
     public static BigDecimal toBigDecimal(String value, int decimals) {
         BigDecimal d = new BigDecimal(value).setScale(decimals, BigDecimal.ROUND_HALF_EVEN);
         return d;
     }
-
     public static BigDecimal toBigDecimal(Double value, int decimals) {
         BigDecimal d = new BigDecimal(value).setScale(decimals, BigDecimal.ROUND_HALF_EVEN);
         return d;
     }
-
     public static BigDecimal toBigDecimal(Float value, int decimals) {
         BigDecimal d = new BigDecimal(value).setScale(decimals, BigDecimal.ROUND_HALF_EVEN);
         return d;
