@@ -28,7 +28,7 @@ public class CategoriaServiceImpl implements ICategoriaService {
     }
 
     @Override
-    public void eleminar(int idCategoria) {
+    public void eliminar(int idCategoria) {
         dao.deleteById(idCategoria);
     }
 

@@ -14,7 +14,6 @@ public class Presentacion {
     
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column (name = "IdPresentacion")
     private int idPresentacion;
     
    @Column ( name = "Presentacion" , length = 100  )
@@ -23,21 +22,7 @@ public class Presentacion {
    @Column (name = "Descripcion" , length = 400)
    private String descripcion;
 
-    public Presentacion(int idPresentacion) {
-        this.idPresentacion = idPresentacion;
-    }
-
-    public Presentacion(String presentacion, String descripcion) {
-        this.presentacion = presentacion;
-        this.descripcion = descripcion;
-    }
-
-   
-   
-    public Presentacion(int idPresentacion, String presentacion, String descripcion) {
-        this.idPresentacion = idPresentacion;
-        this.presentacion = presentacion;
-        this.descripcion = descripcion;
+    public Presentacion(){
     }
 
     public int getIdPresentacion() {

@@ -33,26 +33,26 @@ public class Compra {
     private String numComprobante;
 
     @ManyToOne
-    @JoinColumn(name = "colaborador")
-    private Colaborador colaborador;
+    @JoinColumn(name = "id_personal")
+    private Personal personal;
 
     @ManyToOne
-    @JoinColumn(name = "personal")
-    private Colaborador personal;
+    @JoinColumn(name = "id_cliente")
+    private Cliente cliente;
 
     @ManyToOne
-    @JoinColumn(name = "comprobante")
+    @JoinColumn(name = "id_tipo_comprobante")
     private TipoComprobante comprobante;
 
     public int getIdCompra() {
         return idCompra;
     }
 
-    public Colaborador getPersonal() {
+    public Personal getPersonal() {
         return personal;
     }
 
-    public void setPersonal(Colaborador personal) {
+    public void setPersonal(Personal personal) {
         this.personal = personal;
     }
 
@@ -92,13 +92,15 @@ public class Compra {
         this.numComprobante = numComprobante;
     }
 
-    public Colaborador getColaborador() {
-        return colaborador;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setColaborador(Colaborador colaborador) {
-        this.colaborador = colaborador;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
+
+   
 
     public TipoComprobante getComprobante() {
         return comprobante;

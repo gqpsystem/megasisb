@@ -42,7 +42,7 @@ public class AnulacionComprobante  {
     @Column(name = "motivo" , length = 300)
     private String motivo ;
     
-    @JoinColumn ( name  = "venta")
+    @JoinColumn ( name  = "id_venta")
     @ManyToOne
     private Venta venta; // la variable se llama venta en tabla
     

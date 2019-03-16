@@ -26,7 +26,7 @@ public class PresentacionServiceImpl implements IPresentacionService {
     }
 
     @Override
-    public void eleminar(int idPresentacion) {
+    public void eliminar(int idPresentacion) {
         dao.deleteById(idPresentacion);
     }
 

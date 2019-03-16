@@ -11,7 +11,7 @@ public interface IVentaDetalleService {
 
     void modificar(VentaDetalle detalle);
 
-    void eleminar (int idDetalle);
+    void eliminar (int idDetalle);
 
     VentaDetalle listarId(int idVentaDetalle);
 

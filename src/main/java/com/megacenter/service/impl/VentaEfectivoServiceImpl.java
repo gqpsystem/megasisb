@@ -27,7 +27,7 @@ public class VentaEfectivoServiceImpl implements IVentaEfectivoService {
     }
 
     @Override
-    public void eleminar(int idVentaEfectivo) {
+    public void eliminar(int idVentaEfectivo) {
         dao.deleteById(idVentaEfectivo);
     }
 

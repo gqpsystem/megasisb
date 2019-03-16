@@ -26,7 +26,7 @@ public class ClienteServiceImpl implements IClienteService {
     }
 
     @Override
-    public void eleminar(int idCliente) {
+    public void eliminar(int idCliente) {
         dao.deleteById(idCliente);
     }
 

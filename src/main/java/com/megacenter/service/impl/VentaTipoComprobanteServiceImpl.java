@@ -27,7 +27,7 @@ public class VentaTipoComprobanteServiceImpl implements IVentaTipoComprobanteSer
     }
 
     @Override
-    public void eleminar(int idVentaTipoComprobante) {
+    public void eliminar(int idVentaTipoComprobante) {
         dao.deleteById(idVentaTipoComprobante);
     }
 

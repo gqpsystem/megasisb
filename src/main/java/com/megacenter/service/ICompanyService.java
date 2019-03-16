@@ -10,7 +10,7 @@ public interface ICompanyService {
 
     void modificar (Company company);
 
-    void eleminar(int idCompany);
+    void eliminar(int idCompany);
 
     Company listarId(int idCompany);
 

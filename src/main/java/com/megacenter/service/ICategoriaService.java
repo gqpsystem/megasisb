@@ -11,7 +11,7 @@ public interface ICategoriaService {
 
     void modificar ( Categoria categoria);
 
-    void eleminar ( int idCategoria);
+    void eliminar ( int idCategoria);
 
     Categoria listarId(int idCategoria);
 

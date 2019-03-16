@@ -10,7 +10,7 @@ public interface ICajaService {
 
     void modificar (Caja caja);
 
-    void eleminar (int idCaja) ;
+    void eliminar (int idCaja);
 
     Caja listarId(int idCaja);
 

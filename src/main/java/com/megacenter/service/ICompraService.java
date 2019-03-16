@@ -10,7 +10,7 @@ public interface ICompraService {
 
     void modificar (Compra compra);
 
-    void eleminar(int idCompra);
+    void eliminar(int idCompra);
 
     Compra listarId(int idCompra);
 

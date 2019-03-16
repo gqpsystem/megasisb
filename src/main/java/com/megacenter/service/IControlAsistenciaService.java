@@ -10,7 +10,7 @@ public interface IControlAsistenciaService {
 
     void modificar(ControlAsistencia asistencia);
 
-    void eleminar (int idAsistencia);
+    void eliminar (int idAsistencia);
 
     ControlAsistencia listarId(int idAsistencia);
 

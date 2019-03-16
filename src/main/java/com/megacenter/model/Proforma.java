@@ -16,7 +16,6 @@ public class Proforma {
     
     @Id
     @GeneratedValue ( strategy = GenerationType.IDENTITY)
-    @Column  (name = "idProforma")
     private int idProforma ;
     
     @Column ( name = "cantidad")
@@ -31,11 +30,11 @@ public class Proforma {
     @Column ( name = "serieProf" , length = 60)
     private String serieProf ;
     
-    @JoinColumn ( name = "producto")
+    @JoinColumn ( name = "id_producto")
     @ManyToOne 
     private Producto producto ;
     
-    @JoinColumn ( name = "proveedor")
+    @JoinColumn ( name = "id_provedor")
     @ManyToOne
     private Proveedor proveedor ;
 

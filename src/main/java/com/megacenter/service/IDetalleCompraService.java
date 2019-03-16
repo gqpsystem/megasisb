@@ -10,7 +10,7 @@ public interface IDetalleCompraService {
 
     void modificar(DetalleCompra detalleCompra);
 
-    void eleminar (int idDetalleCompra);
+    void eliminar (int idDetalleCompra);
 
     DetalleCompra listarId( int idDetalleCompra);
 

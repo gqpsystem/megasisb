@@ -13,13 +13,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "colaborador")
-public class Colaborador {
+@Table(name = "personal")
+public class Personal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idColaborador")
-    private int idColaborador;
+    private int idPersonal;
 
     @Column(name = "tipoUsuario", length = 100)
     private String tipoUsuario;
@@ -45,21 +44,22 @@ public class Colaborador {
     @Column(name = " estado", length = 10)
     private String estado;
 
-    @JoinColumn(name = "Persona")
+    @JoinColumn(name = "id_persona")
     @OneToOne
-    private Persona Persona;
+    private Persona persona;
 
-    public Colaborador() {
+    public Personal() {
     }
 
-    public int getIdColaborador() {
-        return idColaborador;
+    public int getIdPersonal() {
+        return idPersonal;
     }
 
-    public void setIdColaborador(int idColaborador) {
-        this.idColaborador = idColaborador;
+    public void setIdPersonal(int idPersonal) {
+        this.idPersonal = idPersonal;
     }
 
+    
     public String getTipoUsuario() {
         return tipoUsuario;
     }
@@ -125,12 +125,15 @@ public class Colaborador {
     }
 
     public Persona getPersona() {
-        return Persona;
+        return persona;
     }
 
-    public void setPersona(Persona Persona) {
-        this.Persona = Persona;
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
+
+    
+    
 
 
 }

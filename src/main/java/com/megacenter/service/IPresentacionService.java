@@ -10,7 +10,7 @@ public interface IPresentacionService {
 
     void modificar(Presentacion presentacion);
 
-    void eleminar(int idPresentacion);
+    void eliminar(int idPresentacion);
 
     Presentacion listarId(int idPresentacion);
 

@@ -10,7 +10,7 @@ public interface IDolenciaService {
 
     void modificar(Dolencia dolencia);
 
-    void eleminar(int idDolencia);
+    void eliminar(int idDolencia);
 
     Dolencia listarId(int idDolencia);
 

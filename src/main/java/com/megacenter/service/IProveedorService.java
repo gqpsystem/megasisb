@@ -10,7 +10,7 @@ public interface IProveedorService {
 
     void modificar(Proveedor proveedor);
 
-    void eleminar(int idProveedor);
+    void eliminar(int idProveedor);
 
     Proveedor listarId(int idProveedor);
 

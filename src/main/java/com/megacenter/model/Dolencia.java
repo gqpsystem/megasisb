@@ -14,7 +14,6 @@ public class Dolencia {
     
     @Id
     @GeneratedValue ( strategy =  GenerationType.IDENTITY)
-    @Column (name = "idDolencia")
     private int idDolencia ; 
     
     @Column (name = "dolencia" , length = 100)

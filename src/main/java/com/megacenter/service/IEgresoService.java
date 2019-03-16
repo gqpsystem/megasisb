@@ -10,7 +10,7 @@ public interface IEgresoService {
 
     void modificar(Egreso egreso);
 
-    void eleminar(int idEgreso);
+    void eliminar(int idEgreso);
 
     Egreso listarId(int idEgreso);
 

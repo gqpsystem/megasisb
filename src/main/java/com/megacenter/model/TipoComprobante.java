@@ -14,8 +14,7 @@ public class TipoComprobante {
     
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column (name = "idTipoComprobante")
-    private int idTipoComprobbante ;
+    private int idTipoComprobante ;
     
     @Column ( name = "descripcionDoc" , length = 10)
     private String descripcionDoc ;
@@ -23,13 +22,15 @@ public class TipoComprobante {
     public TipoComprobante() {
     }
 
-    public int getIdTipoComprobbante() {
-        return idTipoComprobbante;
+    public int getIdTipoComprobante() {
+        return idTipoComprobante;
     }
 
-    public void setIdTipoComprobbante(int idTipoComprobbante) {
-        this.idTipoComprobbante = idTipoComprobbante;
+    public void setIdTipoComprobante(int idTipoComprobante) {
+        this.idTipoComprobante = idTipoComprobante;
     }
+
+    
 
     public String getDescripcionDoc() {
         return descripcionDoc;

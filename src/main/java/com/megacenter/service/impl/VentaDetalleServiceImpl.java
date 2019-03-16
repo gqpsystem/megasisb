@@ -26,7 +26,7 @@ public class VentaDetalleServiceImpl implements IVentaDetalleService {
     }
 
     @Override
-    public void eleminar(int idDetalle) {
+    public void eliminar(int idDetalle) {
         dao.deleteById(idDetalle);
     }
 

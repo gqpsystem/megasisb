@@ -14,7 +14,6 @@ public class Persona {
     
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column ( name = "idPersona")
     private int idPersona ;
     
     @Column ( name = "nombre" , length = 150 , nullable = false)
@@ -35,9 +34,10 @@ public class Persona {
     @Column ( name = "direccion" , length = 150)
     private String direccion ;
 
-    public Persona(int idPersona) {
-        this.idPersona = idPersona;
+    public Persona( ) {
+     
     }
+    
 
     public int getIdPersona() {
         return idPersona;

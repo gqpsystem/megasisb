@@ -10,7 +10,7 @@ public interface ICajaFuerteService {
 
     void modificar(CajaFuerte cajaFuerte);
 
-    void eleminar(int idCajaFuerte);
+    void eliminar(int idCajaFuerte);
 
     CajaFuerte listarId(int idCajaFuerte);
 

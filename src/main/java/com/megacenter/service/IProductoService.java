@@ -10,7 +10,7 @@ public interface IProductoService {
     
     void modificar(Producto producto);
 
-    void eleminar(int idProducto);
+    void eliminar(int idProducto);
 
     Producto listarId(int idProducto);
 

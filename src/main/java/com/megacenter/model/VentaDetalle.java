@@ -16,7 +16,6 @@ public class VentaDetalle {
     
     @Id
     @GeneratedValue  (strategy = GenerationType.IDENTITY)
-    @Column (name = "idVentaDetalle")
     private int idVentaDetalle ;
     
     @Column (name  = "precioVentaUnitario" , precision = 16 ,scale = 2)
@@ -31,11 +30,11 @@ public class VentaDetalle {
     @Column (name = "estado" , length = 20)
     private String estado ;
     
-    @JoinColumn (name  = "Producto" )
+    @JoinColumn (name  = "id_producto" )
     @ManyToOne
     private Producto producto ;
     
-    @JoinColumn ( name = "venta")
+    @JoinColumn ( name = "id_venta")
     @ManyToOne  
     private Venta venta ;
 
