@@ -16,8 +16,7 @@ public class Proveedor {
     
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column ( name = "idProvedor")
-    private int idProvedor;
+    private int idProveedor;
     
     @Column ( name = "razonSocial" , length = 200, nullable = false)
     private String razonSocial ;
@@ -34,19 +33,19 @@ public class Proveedor {
     @Column ( name = "estado" , length = 10)
     private String estado ;
     
-    @JoinColumn ( name = "persona")
+    @JoinColumn ( name = "id_persona")
     @OneToOne
     private Persona persona ;
 
     public Proveedor() {
     }
 
-    public int getIdProvedor() {
-        return idProvedor;
+    public int getIdProveedor() {
+        return idProveedor;
     }
 
-    public void setIdProvedor(int idProvedor) {
-        this.idProvedor = idProvedor;
+    public void setIdProveedor(int idProvedor) {
+        this.idProveedor = idProvedor;
     }
 
     public String getRazonSocial() {

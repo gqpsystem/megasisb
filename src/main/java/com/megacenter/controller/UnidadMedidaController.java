@@ -67,10 +67,9 @@ public class UnidadMedidaController {
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(unidadMedida.getIdUnidadmedida()).toUri();
         return ResponseEntity.created(location).build();
-
     }
 
-    @PutMapping(value="/actualizar" ,consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value="/actualizar" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> actualizar(@RequestBody UnidadMedida unidadMedida) {
         service.modificar(unidadMedida);
         return new ResponseEntity<Object>(HttpStatus.OK);

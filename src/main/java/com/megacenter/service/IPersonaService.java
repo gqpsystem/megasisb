@@ -10,7 +10,7 @@ public interface IPersonaService {
 
     void modificar(Persona persona);
 
-    void eleminar(int idPersona);
+    void eliminar(int idPersona);
 
     Persona listarId(int idPersona);
 

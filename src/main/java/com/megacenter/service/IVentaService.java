@@ -10,7 +10,7 @@ public interface IVentaService {
 
     void modificar(Venta venta);
 
-    void eleminar(int idVenta);
+    void eliminar(int idVenta);
 
     Venta listarId(int idVenta);
 

@@ -18,18 +18,26 @@ public class Cliente {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "idCliente")
     private int idCliente ;
     
     @Column (name = "observacion" , length = 350)
     private String observacion ;
    
-    @JoinColumn(name  ="Persona")
+    @JoinColumn(name  ="id_persona")
     @OneToOne
-    private Persona Persona;
+    private Persona persona;
 
     public Cliente() {
     }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+    
 
     public int getIdCliente() {
         return idCliente;
@@ -47,16 +55,7 @@ public class Cliente {
         this.observacion = observacion;
     }
 
-    public Persona getPersona() {
-        return Persona;
-    }
-
-    public void setPersona(Persona Persona) {
-        this.Persona = Persona;
-    }
-
-    
-    
+  
     
     
 }

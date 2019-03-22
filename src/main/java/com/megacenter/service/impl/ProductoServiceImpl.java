@@ -26,7 +26,7 @@ public class ProductoServiceImpl implements IProductoService {
     }
 
     @Override
-    public void eleminar(int idProducto) {
+    public void eliminar(int idProducto) {
         dao.deleteById(idProducto);
     }
 

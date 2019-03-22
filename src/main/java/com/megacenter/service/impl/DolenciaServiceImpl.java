@@ -27,7 +27,7 @@ public class DolenciaServiceImpl implements IDolenciaService {
     }
 
     @Override
-    public void eleminar(int idDolencia) {
+    public void eliminar(int idDolencia) {
         dao.deleteById(idDolencia);
     }
 

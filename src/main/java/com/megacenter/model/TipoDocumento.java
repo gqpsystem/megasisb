@@ -14,7 +14,6 @@ import javax.persistence.Table;
 public class TipoDocumento {
     
     @Id
-    @Column (name = "idTipoDocumento")
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int idTipoDocumento;
     

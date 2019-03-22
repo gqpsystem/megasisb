@@ -18,7 +18,6 @@ public class Venta {
     
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column (name = "idVenta")
     private int idVenta ;
     
     @Column (name = "fechaVenta", nullable = false)
@@ -36,45 +35,47 @@ public class Venta {
     @Column ( name = "estadoVenta" , length = 20)
     private String estadoVenta ;
 
-    @JoinColumn (name = "cliente")
+    @JoinColumn (name = "id_cliente")
     @ManyToOne
-    private Cliente Cliente;
+    private Cliente cliente;
     
-    @JoinColumn (name = "colaborador")
+    @JoinColumn (name = "id_personal")
     @ManyToOne 
-    private Colaborador Colaborador ;
+    private Personal personal ;
     
-    @JoinColumn ( name = "tipoComprobante")
+    @JoinColumn ( name = "id_tipo_comprobante")
     @ManyToOne
-    private VentaTipoComprobante Comprobante ;
+    private VentaTipoComprobante comprobante ;
     
     public Venta() {
     }
 
     public Cliente getCliente() {
-        return Cliente;
+        return cliente;
     }
 
-    public void setCliente(Cliente Cliente) {
-        this.Cliente = Cliente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public Colaborador getColaborador() {
-        return Colaborador;
+    public Personal getPersonal() {
+        return personal;
     }
 
-    public void setColaborador(Colaborador Colaborador) {
-        this.Colaborador = Colaborador;
+    public void setPersonal(Personal personal) {
+        this.personal = personal;
     }
 
+   
     public VentaTipoComprobante getComprobante() {
-        return Comprobante;
+        return comprobante;
     }
 
-    public void setComprobante(VentaTipoComprobante Comprobante) {
-        this.Comprobante = Comprobante;
+    public void setComprobante(VentaTipoComprobante comprobante) {
+        this.comprobante = comprobante;
     }
 
+    
     public int getIdVenta() {
         return idVenta;
     }

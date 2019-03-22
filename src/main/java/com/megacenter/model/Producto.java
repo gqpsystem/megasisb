@@ -1,4 +1,4 @@
-
+    
 package com.megacenter.model;
 
 import java.sql.Date;
@@ -17,7 +17,6 @@ public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idProducto")
     private int idProducto ;
     
     @Column(name = "codigo" , length = 100 , unique = true )
@@ -51,23 +50,40 @@ public class Producto {
     private String laboratorio;
     
     @ManyToOne
-    @JoinColumn (name = "categoria")
-    private Categoria Categoria ;
+    @JoinColumn (name = "id_categoria")
+    private Categoria categoria ;
     
     @ManyToOne
-    @JoinColumn ( name = "presentacion")
-    private Presentacion Presentacion ;
+    @JoinColumn ( name = "id_presentacion")
+    private Presentacion presentacion ;
     
     @ManyToOne
-    @JoinColumn (name = "dolencia")
+    @JoinColumn (name = "id_dolencia")
     private Dolencia dolencia ;
     
     @ManyToOne
-    @JoinColumn (name = "unidadMedida")
+    @JoinColumn (name = "id_unidadmedida")
     private UnidadMedida unidadMedida ;
 
     public Producto() {
     }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public Presentacion getPresentacion() {
+        return presentacion;
+    }
+
+    public void setPresentacion(Presentacion presentacion) {
+        this.presentacion = presentacion;
+    }
+    
 
     public int getIdProducto() {
         return idProducto;
@@ -153,23 +169,9 @@ public class Producto {
         return laboratorio;
     }
 
-    public Categoria getCategoria() {
-        return Categoria;
-    }
-
-    public void setCategoria(Categoria Categoria) {
-        this.Categoria = Categoria;
-    }
-
-
-    public Presentacion getPresentacion() {
-        return Presentacion;
-    }
-
-    public void setPresentacion(Presentacion Presentacion) {
-        this.Presentacion = Presentacion;
-    }
-
+   
+    
+    
     public Dolencia getDolencia() {
         return dolencia;
     }

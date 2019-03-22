@@ -15,7 +15,6 @@ public class VentaTipoComprobante {
     
     @Id 
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column ( name = "idTipoComprobante")
     private int idTipoComprobante ;
 
     @Column (name = "descripcionDoc" , length = 100)

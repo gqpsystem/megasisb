@@ -7,8 +7,9 @@ import com.megacenter.model.Egreso;
 import com.megacenter.service.IEgresoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class EgresoServiceImpl implements IEgresoService {
 
     @Autowired
@@ -25,7 +26,7 @@ public class EgresoServiceImpl implements IEgresoService {
     }
 
     @Override
-    public void eleminar(int idEgreso) {
+    public void eliminar(int idEgreso) {
         dao.deleteById(idEgreso);
     }
 

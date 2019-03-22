@@ -28,7 +28,7 @@ public class ProformaServiceImpl implements IProformaService {
     }
 
     @Override
-    public void eleminar(int idProforma) {
+    public void eliminar(int idProforma) {
         dao.deleteById(idProforma);
     }
 

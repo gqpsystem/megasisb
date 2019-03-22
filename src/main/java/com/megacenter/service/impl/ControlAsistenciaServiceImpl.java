@@ -27,7 +27,7 @@ public class ControlAsistenciaServiceImpl implements IControlAsistenciaService {
     }
 
     @Override
-    public void eleminar(int idAsistencia) {
+    public void eliminar(int idAsistencia) {
         dao.deleteById(idAsistencia);
     }
 

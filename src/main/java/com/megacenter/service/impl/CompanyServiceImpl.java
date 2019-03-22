@@ -63,7 +63,7 @@ public class CompanyServiceImpl implements ICompanyService {
     }
 
     @Override
-    public void eleminar(int idCompany) {
+    public void eliminar(int idCompany) {
         dao.deleteById(idCompany);
     }
 

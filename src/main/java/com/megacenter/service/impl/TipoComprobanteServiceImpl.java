@@ -28,7 +28,7 @@ public class TipoComprobanteServiceImpl implements ITipoComprobanteService {
     }
 
     @Override
-    public void eleminar(int idComprobante) {
+    public void eliminar(int idComprobante) {
         dao.deleteById(idComprobante);
     }
 

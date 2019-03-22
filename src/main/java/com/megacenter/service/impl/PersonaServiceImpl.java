@@ -27,7 +27,7 @@ public class PersonaServiceImpl implements IPersonaService {
     }
 
     @Override
-    public void eleminar(int idPersona) {
+    public void eliminar(int idPersona) {
         dao.deleteById(idPersona);
     }
 

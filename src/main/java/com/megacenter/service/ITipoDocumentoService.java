@@ -6,7 +6,7 @@ import com.megacenter.model.TipoDocumento;
 
 public interface ITipoDocumentoService {
 
-    void guardar(TipoDocumento documento);
+    void registrar(TipoDocumento documento);
 
     void modificar(TipoDocumento documento);
 

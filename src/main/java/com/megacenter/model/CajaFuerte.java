@@ -19,7 +19,6 @@ public class CajaFuerte {
     
     @Id
     @GeneratedValue ( strategy =  GenerationType.IDENTITY)
-    @Column ( name =  "idCajaFuerte")
     private int idCajaFuerte ;
     
     
@@ -38,13 +37,13 @@ public class CajaFuerte {
     @Column ( name =  "montoTotalCaja", precision = 11 , scale = 2)
     private Double montoTotalCaja ;
     
-    @JoinColumn ( name = "Caja")
+    @JoinColumn ( name = "id_caja")
     @OneToOne
     private Caja caja ;
     
-    @JoinColumn ( name = "responsable")
+    @JoinColumn ( name = "id_personal")
     @OneToOne
-    private Colaborador responsable ; // este en la tabla esta responsable
+    private Personal responsable ; // este en la tabla esta responsable
 
     public CajaFuerte() {
     }
@@ -105,11 +104,11 @@ public class CajaFuerte {
         this.caja = caja;
     }
 
-    public Colaborador getResponsable() {
+    public Personal getResponsable() {
         return responsable;
     }
 
-    public void setResponsable(Colaborador responsable) {
+    public void setResponsable(Personal responsable) {
         this.responsable = responsable;
     }
 

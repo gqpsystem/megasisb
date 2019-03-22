@@ -28,7 +28,7 @@ public class CajaServiceImpl implements ICajaService {
     }
 
     @Override
-    public void eleminar(int idCaja) {
+    public void eliminar(int idCaja) {
         dao.deleteById(idCaja);
     }
 

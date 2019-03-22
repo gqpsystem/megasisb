@@ -26,7 +26,7 @@ public class AnulacionComprobanteServiceImpl implements IAnulacionComprobanteSer
     }
 
     @Override
-    public void eleminar(int idanulacionComprobante) {
+    public void eliminar(int idanulacionComprobante) {
         dao.deleteById(idanulacionComprobante);
     }
 

@@ -12,12 +12,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table  (name  = "")
+@Table  (name  = "egreso")
 public class Egreso {
     
     @Id
     @GeneratedValue ( strategy =  GenerationType.IDENTITY)
-    @Column ( name = "idEgreso")
     private int idEgreso ;
     
     @Column ( name = "monto" , precision = 11, scale = 2)
@@ -32,9 +31,9 @@ public class Egreso {
     @Column  (name = "estadoVenta")
     private String estadoVenta ;
     
-    @JoinColumn ( name = "personal")
+    @JoinColumn ( name = "id_personal")
     @ManyToOne
-    private Colaborador personal ;
+    private Personal personal ;
 
     public Egreso() {
     }
@@ -80,11 +79,11 @@ public class Egreso {
         this.estadoVenta = estadoVenta;
     }
 
-    public Colaborador getPersonal() {
+    public Personal getPersonal() {
         return personal;
     }
 
-    public void setPersonal(Colaborador personal) {
+    public void setPersonal(Personal personal) {
         this.personal = personal;
     }
     

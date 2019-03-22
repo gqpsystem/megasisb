@@ -26,7 +26,7 @@ public class DetalleCompraServiceImpl implements IDetalleCompraService {
     }
 
     @Override
-    public void eleminar(int idDetalleCompra) {
+    public void eliminar(int idDetalleCompra) {
         dao.deleteById(idDetalleCompra);
     }
 

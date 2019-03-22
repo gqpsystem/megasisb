@@ -18,7 +18,6 @@ public class ControlAsistencia {
     
     @Id
     @GeneratedValue ( strategy = GenerationType.IDENTITY)
-    @Column ( name = "control")
     private int idControl ;
     
     
@@ -35,8 +34,8 @@ public class ControlAsistencia {
     private String estadoEntrada ;
     
     @ManyToOne
-    @JoinColumn ( name = "personal")
-    private Colaborador personal; 
+    @JoinColumn ( name = "id_personal")
+    private Personal personal; 
 
     public ControlAsistencia() {
     }
@@ -81,11 +80,11 @@ public class ControlAsistencia {
         this.estadoEntrada = estadoEntrada;
     }
 
-    public Colaborador getPersonal() {
+    public Personal getPersonal() {
         return personal;
     }
 
-    public void setPersonal(Colaborador personal) {
+    public void setPersonal(Personal personal) {
         this.personal = personal;
     }
     

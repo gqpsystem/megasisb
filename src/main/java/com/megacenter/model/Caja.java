@@ -2,7 +2,6 @@
 package com.megacenter.model;
 
 import java.sql.Date;
-import java.sql.Time;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,9 +21,7 @@ public class Caja {
     
     @Column (name = "fechaCierre")
     private Date fechaCierre;
-    
-    @Column (name  = "hora")
-    private Time hora;
+   
     
     @Column (name = "montoTotalRegistrado" , precision = 11 ,scale = 2)
     private Double montoTotalRegistrado ; 
@@ -41,7 +38,7 @@ public class Caja {
     @Column ( name = "estadoCaja" , length = 50)
     private String estadoCaja; 
     
-    @JoinColumn ( name = "venta")
+    @JoinColumn ( name = "id_venta")
     @ManyToOne
     private Venta venta ; //esto en la tabla esta venta
 
@@ -72,13 +69,7 @@ public class Caja {
         this.fechaCierre = fechaCierre;
     }
 
-    public Time getHora() {
-        return hora;
-    }
-
-    public void setHora(Time hora) {
-        this.hora = hora;
-    }
+  
 
     public Double getMontoTotalRegistrado() {
         return montoTotalRegistrado;

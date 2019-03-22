@@ -11,7 +11,7 @@ public interface ITipoComprobanteService {
 
     void modificar(TipoComprobante comprobante);
 
-    void eleminar(int idComprobante);
+    void eliminar(int idComprobante);
 
     TipoComprobante listarId(int idComprobante);
 

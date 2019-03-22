@@ -10,7 +10,7 @@ public interface IVentaTipoComprobanteService {
 
     void modificar(VentaTipoComprobante ventaTipoComprobante);
 
-    void eleminar(int idVentaTipoComprobante);
+    void eliminar(int idVentaTipoComprobante);
 
     VentaTipoComprobante listarId(int idVentaTipoComprobante);
 

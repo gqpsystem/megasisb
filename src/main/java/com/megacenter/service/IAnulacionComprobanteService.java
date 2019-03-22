@@ -10,7 +10,7 @@ public interface IAnulacionComprobanteService {
 
     void modificar(AnulacionComprobante anulacionComprobante);
 
-    void eleminar(int idanulacionComprobante);
+    void eliminar(int idanulacionComprobante);
     
     AnulacionComprobante listarId(int idanulacionComprobante);
 

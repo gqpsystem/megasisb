@@ -27,7 +27,7 @@ public class ProveedorServiceImpl implements IProveedorService {
     }
 
     @Override
-    public void eleminar(int idProveedor) {
+    public void eliminar(int idProveedor) {
         dao.deleteById(idProveedor);
     }
 

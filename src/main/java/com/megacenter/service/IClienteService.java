@@ -10,7 +10,7 @@ public interface IClienteService {
 
     void modificar(Cliente cliente);
 
-    void eleminar(int idCliente);
+    void eliminar(int idCliente);
 
     Cliente listarId(int idCliente);
 

@@ -10,7 +10,7 @@ public interface IProformaService {
 
     void modificar(Proforma proforma);
 
-    void eleminar(int idProforma);
+    void eliminar(int idProforma);
 
     Proforma listarId(int idProforma);
 
