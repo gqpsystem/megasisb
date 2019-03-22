@@ -7,6 +7,8 @@ import com.megacenter.model.Company;
 import com.megacenter.service.ICompanyService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,6 +18,41 @@ public class CompanyServiceImpl implements ICompanyService {
     private ICompanyDAO dao;
 
     @Override
+    public Company findByRazonSocialOrRuc(String razonSocial, String ruc) {
+        return dao.findByRazonSocialOrRuc(razonSocial,ruc);
+    }
+
+    @Override
+    public Page<Company> getAll(Pageable pageable) {
+        return dao.findAll(pageable);
+    }
+
+    @Override
+    public Company getById(int id) {
+        return dao.getOne(id);
+    }
+
+    @Override
+    public Page<Company> findByRazonSocialContains(String razonSocial, Pageable pageable) {
+        return dao.findByRazonSocialContains(razonSocial,pageable);
+    }
+
+    @Override
+    public Company findByRazonSocialIgnoreCase(String razonSocial) {
+        return dao.findByRazonSocialIgnoreCase(razonSocial);
+    }
+
+    @Override
+    public Company findByRuc(String ruc) {
+        return dao.findByRuc(ruc);
+    }
+
+    @Override
+    public List<Company> getCompaniesByRucOrRazonSocial(String razonSocial, String ruc) {
+        return null;
+    }
+
+    /*@Override
     public void registrar(Company company) {
         dao.save(company);
     }
@@ -38,5 +75,5 @@ public class CompanyServiceImpl implements ICompanyService {
     @Override
     public List<Company> listar() {
         return dao.findAll();
-    }
+    }*/
 }
