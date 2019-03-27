@@ -19,15 +19,9 @@ public class Personal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPersonal;
-
-    @Column(name = "tipoUsuario", length = 100)
-    private String tipoUsuario;
-
-    @Column(name = "usuario", length = 150 , nullable = false)
-    private String usuario;
-
-    @Column(name = "contraseña", length = 150, nullable = false)
-    private String contraseña;
+    
+    @Column(name = "foto" , length = 150 , nullable = false) 
+    private String foto;
 
     @Column(name = "fechaIngreso")
     private Date fechaIngreso;
@@ -51,6 +45,14 @@ public class Personal {
     public Personal() {
     }
 
+    public String getFoto() {
+    	return foto;
+    }
+    
+    public void setFoto(String foto) {
+    	this.foto = foto ;
+    }
+    
     public int getIdPersonal() {
         return idPersonal;
     }
@@ -59,30 +61,6 @@ public class Personal {
         this.idPersonal = idPersonal;
     }
 
-    
-    public String getTipoUsuario() {
-        return tipoUsuario;
-    }
-
-    public void setTipoUsuario(String tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getContraseña() {
-        return contraseña;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
-    }
 
     public Date getFechaIngreso() {
         return fechaIngreso;

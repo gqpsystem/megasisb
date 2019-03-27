@@ -19,9 +19,6 @@ public class Dolencia {
     @Column (name = "dolencia" , length = 100)
     private String dolencia ;
     
-    @Column (name = "recomendacion" , length = 400)
-    private String recomendacion ;
-
     public Dolencia() {
     }
 
@@ -40,15 +37,5 @@ public class Dolencia {
     public void setDolencia(String dolencia) {
         this.dolencia = dolencia;
     }
-
-    public String getRecomendacion() {
-        return recomendacion;
-    }
-
-    public void setRecomendacion(String recomendacion) {
-        this.recomendacion = recomendacion;
-    }
-
-    
     
 }

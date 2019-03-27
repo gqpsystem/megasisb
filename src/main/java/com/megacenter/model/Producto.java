@@ -49,6 +49,10 @@ public class Producto {
     @Column ( name  = "laboratorio" , length = 50)
     private String laboratorio;
     
+    @Column (name = "recomendacion" , length = 400)
+    private String recomendacion ;
+
+    
     @ManyToOne
     @JoinColumn (name = "id_categoria")
     private Categoria categoria ;
@@ -68,6 +72,15 @@ public class Producto {
     public Producto() {
     }
 
+    public String getRecomendacion() {
+        return recomendacion;
+    }
+
+    public void setRecomendacion(String recomendacion) {
+        this.recomendacion = recomendacion;
+    }
+
+    
     public Categoria getCategoria() {
         return categoria;
     }
