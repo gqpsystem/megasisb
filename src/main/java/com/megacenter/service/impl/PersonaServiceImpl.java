@@ -17,13 +17,13 @@ public class PersonaServiceImpl implements IPersonaService {
     private IPersonaDAO dao;
 
     @Override
-    public void registrar(Persona persona) {
-        dao.save(persona);
+    public Persona registrar(Persona persona) {
+        return dao.save(persona);
     }
 
     @Override
-    public void modificar(Persona persona) {
-        dao.save(persona);
+    public Persona modificar(Persona persona) {
+        return dao.save(persona);
     }
 
     @Override

@@ -6,9 +6,9 @@ import com.megacenter.model.Personal;
 
 public interface IPersonalService {
 
-    void registrar(Personal personal);
+    Personal registrar(Personal personal);
 
-    void modificar(Personal personal);
+    Personal modificar(Personal personal);
 
     void eliminar(int idPersonal);
 

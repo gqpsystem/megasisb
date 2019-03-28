@@ -17,13 +17,13 @@ public class PersonalServiceImpl implements IPersonalService {
     private IColaboradorDAO dao;
 
     @Override
-    public void registrar(Personal personal) {
-        dao.save(personal);
+    public Personal registrar(Personal personal) {
+        return dao.save(personal);
     }
 
     @Override
-    public void modificar(Personal personal) {
-        dao.save(personal);
+    public Personal modificar(Personal personal) {
+        return dao.save(personal);
     }
 
     @Override
