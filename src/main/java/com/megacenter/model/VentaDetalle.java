@@ -30,11 +30,11 @@ public class VentaDetalle {
     @Column (name = "estado" , length = 20)
     private String estado ;
     
-    @JoinColumn (name  = "id_producto" )
+    @JoinColumn (name  = "idProducto" )
     @ManyToOne
     private Producto producto ;
     
-    @JoinColumn ( name = "id_venta")
+    @JoinColumn ( name = "idVenta")
     @ManyToOne  
     private Venta venta ;
 

@@ -26,12 +26,18 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.megacenter.exception.ModeloNotFoundException;
+import com.megacenter.model.Persona;
 import com.megacenter.model.Proveedor;
+import com.megacenter.representation.ProveedorRepresentation;
+import com.megacenter.service.IPersonaService;
 
 @RestController
 @RequestMapping(value = "/api/proveedores")
 public class ProveedorController {
 
+    @Autowired
+    private  IPersonaService personaService;
+            
     @Autowired
     private IProveedorService service;
 
@@ -42,6 +48,7 @@ public class ProveedorController {
         try {
             proveedor = service.listar();
         } catch (Exception e) {
+            System.out.println(e);
             return new ResponseEntity<List<Proveedor>>(proveedor, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -62,16 +69,21 @@ public class ProveedorController {
     }
 
     @PostMapping(value="/registrar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> registrar(@Valid @RequestBody Proveedor proveedor) {
-        service.registrar(proveedor);
+    public ResponseEntity<Object> registrar(@Valid @RequestBody ProveedorRepresentation pr) {
+        Persona persona = personaService.registrar(pr.getPersona());
+        pr.getProveedor().setPersona(persona);
+        Proveedor proveedor= service.registrar(pr.getProveedor());
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(proveedor.getIdProveedor()).toUri();
         return ResponseEntity.created(location).build();
     }
 
     @PutMapping(value="/actualizar" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> actualizar(@RequestBody Proveedor proveedor) {
-        service.modificar(proveedor);
+    public ResponseEntity<Object> actualizar(@RequestBody ProveedorRepresentation pr) {
+        Persona persona= personaService.modificar(pr.getPersona());
+        pr.getProveedor().setPersona(persona);
+        
+        service.modificar(pr.getProveedor());
         return new ResponseEntity<Object>(HttpStatus.OK);
     }
 

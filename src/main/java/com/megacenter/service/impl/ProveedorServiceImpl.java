@@ -17,13 +17,13 @@ public class ProveedorServiceImpl implements IProveedorService {
     private IProveedorDAO dao;
 
     @Override
-    public void registrar(Proveedor proveedor) {
-        dao.save(proveedor);
+    public Proveedor registrar(Proveedor proveedor) {
+        return dao.save(proveedor);
     }
 
     @Override
-    public void modificar(Proveedor proveedor) {
-        dao.save(proveedor) ;
+    public Proveedor modificar(Proveedor proveedor) {
+        return dao.save(proveedor) ;
     }
 
     @Override

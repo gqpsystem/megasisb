@@ -6,9 +6,9 @@ import com.megacenter.model.Proveedor;
 
 public interface IProveedorService {
 
-    void registrar(Proveedor proveedor);
+    Proveedor registrar(Proveedor proveedor);
 
-    void modificar(Proveedor proveedor);
+    Proveedor modificar(Proveedor proveedor);
 
     void eliminar(int idProveedor);
 

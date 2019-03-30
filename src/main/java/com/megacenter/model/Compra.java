@@ -33,15 +33,15 @@ public class Compra {
     private String numComprobante;
 
     @ManyToOne
-    @JoinColumn(name = "id_personal")
+    @JoinColumn(name = "idPersonal")
     private Personal personal;
 
     @ManyToOne
-    @JoinColumn(name = "id_cliente")
+    @JoinColumn(name = "idCliente")
     private Cliente cliente;
 
     @ManyToOne
-    @JoinColumn(name = "id_tipo_comprobante")
+    @JoinColumn(name = "idTipoComprobante")
     private TipoComprobante comprobante;
 
     public int getIdCompra() {

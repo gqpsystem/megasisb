@@ -7,6 +7,10 @@ public class PersonalRepresentation {
     private Persona persona;
     private Personal personal;
 
+    public PersonalRepresentation() {
+    }
+
+    
     public Persona getPersona() {
         return persona;
     }

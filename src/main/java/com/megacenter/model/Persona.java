@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,9 +24,6 @@ public class Persona {
     @Column (name = "apellido" , length = 100)
     private String apellido ;
     
-    @Column (name = "tipoDocumento" , length = 300, nullable = false)
-    private String tipoDocumento ;
-    
     @Column (name = "numDocumento" , length = 20 , unique = true, nullable = false)
     private String numDocumento ;
     
@@ -37,6 +36,15 @@ public class Persona {
     public Persona( ) {
      
     }
+
+    @Override
+    public String toString() {
+        return "Persona{" + "idPersona=" + idPersona + ", nombre=" + nombre + ", apellido=" + apellido + ", numDocumento=" + numDocumento + ", telefono=" + telefono + ", direccion=" + direccion + ", tipoDocumento=" + tipoDocumento + '}';
+    }
+    
+    @JoinColumn (name = "idTipoDocumento")
+    @ManyToOne
+    private TipoDocumento tipoDocumento ;
     
 
     public int getIdPersona() {
@@ -63,14 +71,15 @@ public class Persona {
         this.apellido = apellido;
     }
 
-    public String getTipoDocumento() {
+    public TipoDocumento getTipoDocumento() {
         return tipoDocumento;
     }
 
-    public void setTipoDocumento(String tipoDocumento) {
+    public void setTipoDocumento(TipoDocumento tipoDocumento) {
         this.tipoDocumento = tipoDocumento;
     }
 
+    
     public String getNumDocumento() {
         return numDocumento;
     }

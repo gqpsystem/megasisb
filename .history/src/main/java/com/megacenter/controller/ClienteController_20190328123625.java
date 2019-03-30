@@ -12,7 +12,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 import com.megacenter.exception.ModeloNotFoundException;
 import com.megacenter.model.Cliente;
 import com.megacenter.model.Persona;
-import com.megacenter.representation.ClienteRepresentation;
+import com.megacenter.representation.ClienteReprestentation;
 import com.megacenter.service.IClienteService;
 import com.megacenter.service.IPersonaService;
 
@@ -75,24 +75,22 @@ public class ClienteController {
     }
 
     @PostMapping(value="/registrar")
-    public ResponseEntity<Object> registrar(@Valid @RequestBody ClienteRepresentation rp) {
+    public ResponseEntity<Object> registrar(@Valid @RequestBody ClienteReprestentation rp) {
         Persona persona = personaService.registrar(rp.getPersona());
         rp.getCliente().setPersona(persona);
         Cliente cliente = service.registrar(rp.getCliente());
+        service.registrar(rp);
         
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-        .buildAndExpand(cliente.getIdCliente()).toUri();
+        .buildAndExpand(rp.getIdCliente()).toUri();
 
         return ResponseEntity.created(location).build();
     }
     
 
     @PutMapping(value="/actualizar" , consumes = MediaType.APPLICATION_JSON_VALUE ,  produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> actualizar(@RequestBody ClienteRepresentation rp) {
-        Persona persona = personaService.modificar(rp.getPersona());
-        rp.getCliente().setPersona(persona);
-        service.modificar(rp.getCliente());
-        
+    public ResponseEntity<Object> actualizar(@RequestBody Cliente cliente) {
+        service.modificar(cliente);
         return new ResponseEntity<Object>(HttpStatus.OK);
     }
 
