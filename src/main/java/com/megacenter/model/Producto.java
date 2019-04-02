@@ -52,6 +52,8 @@ public class Producto {
     @Column (name = "recomendacion" , length = 400)
     private String recomendacion ;
 
+    @Column ( name = "imagen" , length  = 400 )
+    private String imagen ;
     
     @ManyToOne
     @JoinColumn (name = "id_categoria")
@@ -72,6 +74,16 @@ public class Producto {
     public Producto() {
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    
+    
     public String getRecomendacion() {
         return recomendacion;
     }
