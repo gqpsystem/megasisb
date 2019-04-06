@@ -67,16 +67,33 @@ public class PersonalController {
         
         
         String filePath = context.getRealPath("/images/");
-        File file = new File(filePath);
+        
+        String path = context.getRealPath("/images/");
         List<Personal> temp= new ArrayList<>();
         
        colaborador = temp ;
         try {
             colaborador = service.listar();
             for (Personal dato : colaborador) {
-            dato.setFoto(filePath+dato.getFoto());
+            File getFile = FileUtils.getFile( filePath ,dato.getFoto());  
+                
+            if (!getFile.isDirectory()) {
+                    String encodeBase64 = null;
+                    try {
+                        String extension = FilenameUtils.getExtension(getFile.getName());
+                        FileInputStream fileInputStream = new FileInputStream(getFile);
+                        byte[] bytes = new byte[(int) getFile.length()];
+                        fileInputStream.read(bytes);
+                        encodeBase64 = Base64.getEncoder().encodeToString(bytes);
+                        dato.setFoto("data:image/"+extension+";base64,"+ encodeBase64);
+                        
+                    } catch (IOException e) {
+                        System.out.println("error: " + e);
+                    }
+                }
             
-        }
+            
+            }
         } catch (Exception e) {
             return new ResponseEntity<List<Personal>>(colaborador , HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -90,10 +107,22 @@ public class PersonalController {
         colaborador = service.listarId(id);
         
         String filePath = context.getRealPath("/images/");
-        colaborador.setEstado(filePath+colaborador.getFoto());
-        if (colaborador == null) {
-            throw new ModeloNotFoundException("ID: " + id);
-        }
+        File getFile = FileUtils.getFile( filePath ,colaborador.getFoto());  
+                
+            if (!getFile.isDirectory()) {
+                    String encodeBase64 = null;
+                    try {
+                        String extension = FilenameUtils.getExtension(getFile.getName());
+                        FileInputStream fileInputStream = new FileInputStream(getFile);
+                        byte[] bytes = new byte[(int) getFile.length()];
+                        fileInputStream.read(bytes);
+                        encodeBase64 = Base64.getEncoder().encodeToString(bytes);
+                        colaborador.setFoto("data:image/"+extension+";base64,"+ encodeBase64);
+                        
+                    } catch (IOException e) {
+                        System.out.println("error: " + e);
+                    }
+                }
         Resource<Personal> resource = new Resource<Personal>(colaborador);
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).listar());
         resource.add(linkTo.withRel("all_Personal"));
@@ -108,6 +137,7 @@ public class PersonalController {
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES); 
  
         PersonalRepresentation personalRep = mapper.reader().forType(PersonalRepresentation.class).readValue(rep);//esto comvierte el text en un array
+        
         if(file != null) {
     		boolean isExist = new File(context.getRealPath("/images/")).exists();
         	if (!isExist) {
@@ -135,8 +165,7 @@ public class PersonalController {
                 .buildAndExpand(personal.getIdPersonal()).toUri();
        
         return ResponseEntity.created(location).build();
-        
-    }
+        }
 
     @PutMapping(value="/actualizar" , consumes = MediaType.ALL_VALUE , produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> actualizar(@RequestParam("file") MultipartFile file ,@RequestParam("rep") String rep) throws IOException, JsonParseException , JsonMappingException {
@@ -145,11 +174,10 @@ public class PersonalController {
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         
         PersonalRepresentation personalRep = mapper.reader().forType(PersonalRepresentation.class).readValue(rep);
-        
         String filePath = context.getRealPath("/images/");
         File fileDelete = FileUtils.getFile( filePath ,service.listarId(personalRep.getPersonal().getIdPersonal()).getFoto());
         fileDelete.delete();
-        
+        System.out.println("hola");
         if(file != null) {
     		boolean isExist = new File(context.getRealPath("/images/")).exists();
         	if (!isExist) {
