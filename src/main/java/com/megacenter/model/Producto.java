@@ -59,10 +59,7 @@ public class Producto {
     @JoinColumn (name = "id_categoria")
     private Categoria categoria ;
     
-    @ManyToOne
-    @JoinColumn ( name = "id_presentacion")
-    private Presentacion presentacion ;
-    
+   
     @ManyToOne
     @JoinColumn (name = "id_dolencia")
     private Dolencia dolencia ;
@@ -101,13 +98,6 @@ public class Producto {
         this.categoria = categoria;
     }
 
-    public Presentacion getPresentacion() {
-        return presentacion;
-    }
-
-    public void setPresentacion(Presentacion presentacion) {
-        this.presentacion = presentacion;
-    }
     
 
     public int getIdProducto() {

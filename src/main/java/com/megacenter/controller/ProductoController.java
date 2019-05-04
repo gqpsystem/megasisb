@@ -55,28 +55,9 @@ public class ProductoController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Producto>> listar() {
         List<Producto> productos = new ArrayList<>();
-        String filePath = context.getRealPath("/producto/");
-
         try {
             productos = service.listar();
-            for (Producto producto : productos) {
-                File getFile = FileUtils.getFile(filePath, producto.getImagen());
-
-                if (!getFile.isDirectory()) {
-                    String encodeBase64 = null;
-                    try {
-                        String extension = FilenameUtils.getExtension(getFile.getName());
-                        FileInputStream fileInputStream = new FileInputStream(getFile);
-                        byte[] bytes = new byte[(int) getFile.length()];
-                        fileInputStream.read(bytes);
-                        encodeBase64 = Base64.getEncoder().encodeToString(bytes);
-                        producto.setImagen("data:image/" + extension + ";base64," + encodeBase64);
-
-                    } catch (IOException e) {
-                        return new ResponseEntity<List<Producto>>(productos, HttpStatus.INTERNAL_SERVER_ERROR);
-                    }
-                }
-            }
+          
         } catch (Exception e) {
             return new ResponseEntity<List<Producto>>(productos, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -89,24 +70,6 @@ public class ProductoController {
         String pathImagen = context.getRealPath("/producto/");
 
         producto = service.listarId(id);
-        
-        File getFile = FileUtils.getFile(pathImagen, producto.getImagen());
-
-        if (!getFile.isDirectory()) {
-            String encodeBase64 = null;
-            try {
-                String extension = FilenameUtils.getExtension(getFile.getName());
-                FileInputStream fileInputStream = new FileInputStream(getFile);
-                byte[] bytes = new byte[(int) getFile.length()];
-                fileInputStream.read(bytes);
-                encodeBase64 = Base64.getEncoder().encodeToString(bytes);
-                producto.setImagen("data:image/" + extension + ";base64," + encodeBase64);
-
-            } catch (IOException e) {
-            throw new ModeloNotFoundException("ID: " + id);
-            }
-        }
-        
         if (producto == null) {
             throw new ModeloNotFoundException("ID: " + id);
         }
@@ -122,7 +85,7 @@ public class ProductoController {
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
         Producto producto = mapper.reader().forType(Producto.class).readValue(product);
-
+       
         if (file != null) {
             boolean isExist = new File(context.getRealPath("/producto/")).exists();
             if (!isExist) {
@@ -149,17 +112,15 @@ public class ProductoController {
     }
 
     @PutMapping(value = "/actualizar", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> actualizar(@RequestParam("file") MultipartFile file, @RequestParam String product) throws IOException {
+    public ResponseEntity<Object> actualizar(@RequestParam(name = "file"  , required = false) MultipartFile file, @RequestParam String product) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
         Producto producto = mapper.reader().forType(Producto.class).readValue(product);
-
-        String filePath = context.getRealPath("/producto/");
-        File fileDelete = FileUtils.getFile(filePath, service.listarId(producto.getIdProducto()).getImagen());
-        fileDelete.delete();
-
         if (file != null) {
+            String filePath = context.getRealPath("/producto/");
+            File fileDelete = FileUtils.getFile(filePath, service.listarId(producto.getIdProducto()).getImagen());
+            fileDelete.delete();
             boolean isExist = new File(context.getRealPath("/producto/")).exists();
             if (!isExist) {
                 new File(context.getRealPath("/producto/")).mkdir();

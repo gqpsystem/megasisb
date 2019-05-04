@@ -44,19 +44,18 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.megacenter.service.IPersonalService;
 import java.io.IOException;
+import java.util.Optional;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-
 
 @RestController
 @RequestMapping(value = "/api/personales")
 public class PersonalController {
 
-    @Autowired 
-    private ServletContext context ;
-	
     @Autowired
-    private IPersonalService service ;
+    private ServletContext context;
+
+    @Autowired
+    private IPersonalService service;
 
     @Autowired
     private IPersonaService personaService;
@@ -64,65 +63,22 @@ public class PersonalController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Personal>> listar() {
         List<Personal> colaborador = new ArrayList<>();
-        
-        
-        String filePath = context.getRealPath("/images/");
-        
-        String path = context.getRealPath("/images/");
-        List<Personal> temp= new ArrayList<>();
-        
-       colaborador = temp ;
         try {
             colaborador = service.listar();
-            for (Personal dato : colaborador) {
-            File getFile = FileUtils.getFile( filePath ,dato.getFoto());  
-                
-            if (!getFile.isDirectory()) {
-                    String encodeBase64 = null;
-                    try {
-                        String extension = FilenameUtils.getExtension(getFile.getName());
-                        FileInputStream fileInputStream = new FileInputStream(getFile);
-                        byte[] bytes = new byte[(int) getFile.length()];
-                        fileInputStream.read(bytes);
-                        encodeBase64 = Base64.getEncoder().encodeToString(bytes);
-                        dato.setFoto("data:image/"+extension+";base64,"+ encodeBase64);
-                        
-                    } catch (IOException e) {
-                        System.out.println("error: " + e);
-                    }
-                }
-            
-            
-            }
         } catch (Exception e) {
-            return new ResponseEntity<List<Personal>>(colaborador , HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<List<Personal>>(colaborador, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<List<Personal>>(colaborador , HttpStatus.OK);
+        return new ResponseEntity<List<Personal>>(colaborador, HttpStatus.OK);
     }
 
-    @GetMapping(value="/{id}" , produces = MediaType.APPLICATION_JSON_VALUE)
-    public Resource<Personal> listarId(@PathVariable Integer id){
-    	
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Resource<Personal> listarId(@PathVariable Integer id) {
+
         Personal colaborador = new Personal();
         colaborador = service.listarId(id);
-        
-        String filePath = context.getRealPath("/images/");
-        File getFile = FileUtils.getFile( filePath ,colaborador.getFoto());  
-                
-            if (!getFile.isDirectory()) {
-                    String encodeBase64 = null;
-                    try {
-                        String extension = FilenameUtils.getExtension(getFile.getName());
-                        FileInputStream fileInputStream = new FileInputStream(getFile);
-                        byte[] bytes = new byte[(int) getFile.length()];
-                        fileInputStream.read(bytes);
-                        encodeBase64 = Base64.getEncoder().encodeToString(bytes);
-                        colaborador.setFoto("data:image/"+extension+";base64,"+ encodeBase64);
-                        
-                    } catch (IOException e) {
-                        System.out.println("error: " + e);
-                    }
-                }
+        if (colaborador == null) {
+            throw new ModeloNotFoundException("ID: " + id);
+        }
         Resource<Personal> resource = new Resource<Personal>(colaborador);
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).listar());
         resource.add(linkTo.withRel("all_Personal"));
@@ -130,71 +86,71 @@ public class PersonalController {
         return resource;
     }
 
-    @PostMapping(value="/registrar" , consumes = MediaType.ALL_VALUE , produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> registrar(@RequestParam("file") MultipartFile file ,@RequestParam("rep") String rep) throws IOException , JsonParseException , JsonMappingException  {
-        
-         ObjectMapper mapper = new ObjectMapper();
-        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES); 
- 
-        PersonalRepresentation personalRep = mapper.reader().forType(PersonalRepresentation.class).readValue(rep);//esto comvierte el text en un array
-        
-        if(file != null) {
-    		boolean isExist = new File(context.getRealPath("/images/")).exists();
-        	if (!isExist) {
-    			new File(context.getRealPath("/images/")).mkdir();
-    		}
-        	
-        	String filename = file.getOriginalFilename();
-        	String modifiFieldName = FilenameUtils.getBaseName(filename)+"_" + System.currentTimeMillis()+"."+FilenameUtils.getExtension(filename);
-        	File servefile = new File(context.getRealPath("/images/"+File.separator+modifiFieldName));
-        	personalRep.getPersonal().setFoto(servefile.getName());
-                try {
-    			FileUtils.writeByteArrayToFile(servefile, file.getBytes());
-    		} catch (Exception e) {
-    			return new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR);
-    		}
-        	
-    	}
-        
-    	Persona persona = personaService.registrar(personalRep.getPersona());
-    	personalRep.getPersonal().setPersona(persona);
-        
-        
-    	Personal personal = service.registrar(personalRep.getPersonal());
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(personal.getIdPersonal()).toUri();
-       
-        return ResponseEntity.created(location).build();
-        }
+    @PostMapping(value = "/registrar", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> registrar(@RequestParam("file") MultipartFile file, @RequestParam("rep") String rep) throws IOException, JsonParseException, JsonMappingException {
 
-    @PutMapping(value="/actualizar" , consumes = MediaType.ALL_VALUE , produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> actualizar(@RequestParam("file") MultipartFile file ,@RequestParam("rep") String rep) throws IOException, JsonParseException , JsonMappingException {
-        
         ObjectMapper mapper = new ObjectMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-        
+
+        PersonalRepresentation personalRep = mapper.reader().forType(PersonalRepresentation.class).readValue(rep);//esto comvierte el text en un array
+
+        if (file != null) {
+            boolean isExist = new File(context.getRealPath("/images/")).exists();
+            if (!isExist) {
+                new File(context.getRealPath("/images/")).mkdir();
+            }
+
+            String filename = file.getOriginalFilename();
+            String modifiFieldName = FilenameUtils.getBaseName(filename) + "_" + System.currentTimeMillis() + "." + FilenameUtils.getExtension(filename);
+            File servefile = new File(context.getRealPath("/images/" + File.separator + modifiFieldName));
+            personalRep.getPersonal().setFoto(servefile.getName());
+            try {
+                FileUtils.writeByteArrayToFile(servefile, file.getBytes());
+            } catch (Exception e) {
+                return new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+
+        }
+
+        Persona persona = personaService.registrar(personalRep.getPersona());
+        personalRep.getPersonal().setPersona(persona);
+
+        Personal personal = service.registrar(personalRep.getPersonal());
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(personal.getIdPersonal()).toUri();
+
+        return ResponseEntity.created(location).build();
+    }
+
+    @PutMapping(value = "/actualizar", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> actualizar(@RequestParam(name = "file", required = false) MultipartFile file, @RequestParam("rep") String rep) throws IOException, JsonParseException, JsonMappingException {
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+
         PersonalRepresentation personalRep = mapper.reader().forType(PersonalRepresentation.class).readValue(rep);
         String filePath = context.getRealPath("/images/");
-        File fileDelete = FileUtils.getFile( filePath ,service.listarId(personalRep.getPersonal().getIdPersonal()).getFoto());
-        fileDelete.delete();
-        System.out.println("hola");
-        if(file != null) {
-    		boolean isExist = new File(context.getRealPath("/images/")).exists();
-        	if (!isExist) {
-    			new File(context.getRealPath("/images/")).mkdir();
-    		}
-        	
-        	String filename = file.getOriginalFilename();
-        	String modifiFieldName = FilenameUtils.getBaseName(filename)+"_" + System.currentTimeMillis()+"."+FilenameUtils.getExtension(filename);
-        	File servefile = new File(context.getRealPath("/images/"+File.separator+modifiFieldName));
-        	personalRep.getPersonal().setFoto(servefile.getName());
-                try {
-    			FileUtils.writeByteArrayToFile(servefile, file.getBytes());
-    		} catch (Exception e) {
-    			return new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR);
-    		}
-        	
-    	}
+
+        if (file != null) {
+            File fileDelete = FileUtils.getFile(filePath, service.listarId(personalRep.getPersonal().getIdPersonal()).getFoto());
+            fileDelete.delete();
+            boolean isExist = new File(context.getRealPath("/images/")).exists();
+            if (!isExist) {
+                new File(context.getRealPath("/images/")).mkdir();
+            }
+
+            String filename = file.getOriginalFilename();
+            String modifiFieldName = FilenameUtils.getBaseName(filename) + "_" + System.currentTimeMillis() + "." + FilenameUtils.getExtension(filename);
+            File servefile = new File(context.getRealPath("/images/" + File.separator + modifiFieldName));
+            personalRep.getPersonal().setFoto(servefile.getName());
+            try {
+                FileUtils.writeByteArrayToFile(servefile, file.getBytes());
+            } catch (Exception e) {
+                return new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+
+        }
+        
         Persona persona = personaService.modificar(personalRep.getPersona());
         personalRep.getPersonal().setPersona(persona);
         Personal personal = service.modificar(personalRep.getPersonal());
@@ -202,14 +158,14 @@ public class PersonalController {
 
     }
 
-    @DeleteMapping(value = "/eliminar/{id}" , produces = MediaType.APPLICATION_JSON_VALUE)
-    public void eliminar(@PathVariable Integer id){
+    @DeleteMapping(value = "/eliminar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public void eliminar(@PathVariable Integer id) {
         Personal colaborador = service.listarId(id);
         if (colaborador == null) {
             throw new ModeloNotFoundException("ID: " + id);
         } else {
             String filePath = context.getRealPath("/images/");
-            File file = FileUtils.getFile( filePath ,colaborador.getFoto());
+            File file = FileUtils.getFile(filePath, colaborador.getFoto());
             file.delete();
             service.eliminar(id);
         }
