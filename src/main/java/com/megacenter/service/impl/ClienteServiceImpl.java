@@ -16,13 +16,13 @@ public class ClienteServiceImpl implements IClienteService {
     private IClienteDAO dao;
 
     @Override
-    public void registrar(Cliente cliente) {
-        dao.save(cliente);
+    public Cliente registrar(Cliente cliente) {
+       return dao.save(cliente);
     }
 
     @Override
-    public void modificar(Cliente cliente) {
-        dao.save(cliente);
+    public Cliente modificar(Cliente cliente) {
+       return dao.save(cliente);
     }
 
     @Override

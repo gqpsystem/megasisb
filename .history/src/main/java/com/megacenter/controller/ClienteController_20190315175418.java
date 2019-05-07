@@ -10,8 +10,8 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 import com.megacenter.exception.ModeloNotFoundException;
-import com.megacenter.model.Presentacion;
-import com.megacenter.service.IPresentacionService;
+import com.megacenter.model.Cliente;
+import com.megacenter.service.IClienteService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
@@ -26,70 +26,69 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PutMapping;
-
 
 
 
 @RestController
-@RequestMapping (value = "/api/presentaciones")
-public class PresentacionController {
+@RequestMapping(value = "/api/clientes")
+public class ClienteController {
 
     @Autowired
-    private IPresentacionService service;
+    private IClienteService service;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Presentacion>> listar() {
-        List<Presentacion> presentacion = new ArrayList<>();
+    public ResponseEntity<List<Cliente>> listar() {
+        List<Cliente> clientes = new ArrayList<>();
         try {
-            presentacion = service.listar();
+            clientes = service.listar();
         } catch (Exception e) {
-            return new ResponseEntity<List<Presentacion>>(presentacion , HttpStatus.INTERNAL_SERVER_ERROR);
+            new ResponseEntity<List<Cliente>>(clientes , HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        return new ResponseEntity<List<Presentacion>>(presentacion , HttpStatus.OK);
+        return new ResponseEntity<List<Cliente>>(clientes , HttpStatus.OK);
     }
     
     @GetMapping(value = "/{id}" , produces = MediaType.APPLICATION_JSON_VALUE)
-    public Resource<Presentacion> listarId(@PathVariable Integer id) {
-        Presentacion presentacion = new Presentacion();
-        presentacion = service.listarId(id);
-        if (presentacion == null) {
+    public Resource<Cliente> listarId(@PathVariable Integer id) {
+        Cliente cliente = new Cliente();
+        cliente = service.listarId(id);
+        if (cliente == null) {
             throw new ModeloNotFoundException("ID: " + id);
         }
-        Resource<Presentacion> resource = new Resource<Presentacion>(presentacion);
+        Resource<Cliente> resource = new Resource<Cliente>(cliente);
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).listar());
-        resource.add(linkTo.withRel("all_Presentacion"));
+
+        resource.add(linkTo.withRel("all_Cliente"));
         return resource;
+        
     }
 
-    @PostMapping(value= "/registrar" , consumes = MediaType.APPLICATION_JSON_VALUE , produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> registrar(@Valid @RequestBody Presentacion presentacion) {
-        service.registrar(presentacion);
+    @PostMapping(value="/registrar")
+    public ResponseEntity<Object> registrar(@Valid @RequestBody Cliente cliente) {
+        service.registrar(cliente);
+        
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                        .buildAndExpand(presentacion.getIdPresentacion()).toUri();
+        .buildAndExpand(cliente.getIdCliente()).toUri();
 
         return ResponseEntity.created(location).build();
     }
+    
 
-    @PutMapping(value = "/actualizar" , consumes = MediaType.APPLICATION_JSON_VALUE , produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> actualizar(@RequestBody Presentacion presentacion) {
-        service.modificar(presentacion);
+    @PutMapping(value="/actualizar" , consumes = MediaType.APPLICATION_JSON_VALUE ,  produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> actualizar(@RequestBody Cliente cliente) {
+        service.modificar(cliente);
         return new ResponseEntity<Object>(HttpStatus.OK);
     }
-    
-    
-    @DeleteMapping(value = "/eliminar/{id}" , produces = MediaType.APPLICATION_JSON_VALUE)
+
+    @DeleteMapping (value = "/eliminar/{id}" , produces = MediaType.APPLICATION_JSON_VALUE)
     public void eliminar(@PathVariable Integer id) {
-        Presentacion pre = service.listarId(id);
-        if (pre == null) {
-            throw new ModeloNotFoundException("ID: " + id );
+        Cliente cliente = service.listarId(id);
+        if (cliente == null) {
+            throw new ModeloNotFoundException("ID: " + id);
         } else {
             service.eliminar(id);
         }
     }
-
-
 }

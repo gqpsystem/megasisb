@@ -42,6 +42,12 @@ public class Personal {
     @OneToOne
     private Persona persona;
 
+    @Override
+    public String toString() {
+        return "Personal{" + "idPersonal=" + idPersonal + ", foto=" + foto + ", fechaIngreso=" + fechaIngreso + ", fechaNacimiento=" + fechaNacimiento + ", sueldo=" + sueldo + ", email=" + email + ", estado=" + estado + ", persona=" + persona + '}';
+    }
+
+    
     public Personal() {
     }
 

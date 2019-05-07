@@ -11,7 +11,10 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 import com.megacenter.exception.ModeloNotFoundException;
 import com.megacenter.model.Cliente;
+import com.megacenter.model.Persona;
+import com.megacenter.representation.ClienteRepresentation;
 import com.megacenter.service.IClienteService;
+import com.megacenter.service.IPersonaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
@@ -30,11 +33,17 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.megacenter.service.IPersonalService;
+
 
 
 @RestController
 @RequestMapping(value = "/api/clientes")
 public class ClienteController {
+
+    @Autowired
+    private IPersonaService personaService;
+
 
     @Autowired
     private IClienteService service;
@@ -66,8 +75,10 @@ public class ClienteController {
     }
 
     @PostMapping(value="/registrar")
-    public ResponseEntity<Object> registrar(@Valid @RequestBody Cliente cliente) {
-        service.registrar(cliente);
+    public ResponseEntity<Object> registrar(@Valid @RequestBody ClienteRepresentation rp) {
+        Persona persona = personaService.registrar(rp.getPersona());
+        rp.getCliente().setPersona(persona);
+        Cliente cliente = service.registrar(rp.getCliente());
         
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
         .buildAndExpand(cliente.getIdCliente()).toUri();
@@ -77,8 +88,11 @@ public class ClienteController {
     
 
     @PutMapping(value="/actualizar" , consumes = MediaType.APPLICATION_JSON_VALUE ,  produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> actualizar(@RequestBody Cliente cliente) {
-        service.modificar(cliente);
+    public ResponseEntity<Object> actualizar(@RequestBody ClienteRepresentation rp) {
+        Persona persona = personaService.modificar(rp.getPersona());
+        rp.getCliente().setPersona(persona);
+        service.modificar(rp.getCliente());
+        
         return new ResponseEntity<Object>(HttpStatus.OK);
     }
 

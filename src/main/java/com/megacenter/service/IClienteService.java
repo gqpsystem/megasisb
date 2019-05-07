@@ -6,9 +6,9 @@ import com.megacenter.model.Cliente;
 
 public interface IClienteService {
 
-    void registrar(Cliente cliente);
+    Cliente registrar(Cliente cliente);
 
-    void modificar(Cliente cliente);
+    Cliente modificar(Cliente cliente);
 
     void eliminar(int idCliente);
 

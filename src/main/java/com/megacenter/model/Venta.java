@@ -35,15 +35,15 @@ public class Venta {
     @Column ( name = "estadoVenta" , length = 20)
     private String estadoVenta ;
 
-    @JoinColumn (name = "id_cliente")
+    @JoinColumn (name = "idCliente")
     @ManyToOne
     private Cliente cliente;
     
-    @JoinColumn (name = "id_personal")
+    @JoinColumn (name = "idPersonal")
     @ManyToOne 
     private Personal personal ;
     
-    @JoinColumn ( name = "id_tipo_comprobante")
+    @JoinColumn ( name = "idTipoComprobante")
     @ManyToOne
     private VentaTipoComprobante comprobante ;
     

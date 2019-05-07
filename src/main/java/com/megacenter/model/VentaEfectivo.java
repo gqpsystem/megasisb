@@ -25,7 +25,7 @@ public class VentaEfectivo {
     @Column (name = "montoPagado" , precision = 16 , scale = 2)
     private Double montoPagado ;
     
-    @JoinColumn  (name = "id_venta")
+    @JoinColumn  (name = "idVenta")
     @OneToOne 
     private Venta venta ;
 

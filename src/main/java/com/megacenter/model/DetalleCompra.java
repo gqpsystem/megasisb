@@ -34,11 +34,11 @@ public class DetalleCompra {
     @Column ( name = "precioTotal" , precision = 16 ,scale = 2)
     private Double precioTotal ;
     
-    @JoinColumn (name = "id_compra")
+    @JoinColumn (name = "idCompra")
     @ManyToOne
     private Compra compra ;
     
-    @JoinColumn ( name = "id_producto")
+    @JoinColumn ( name = "idProducto")
     @ManyToOne
     private Producto producto ;
 
