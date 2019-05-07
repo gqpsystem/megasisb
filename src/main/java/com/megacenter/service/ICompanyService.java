@@ -8,9 +8,9 @@ import org.springframework.data.domain.Pageable;
 
 public interface ICompanyService {
 
-    /*void registrar(Company company);
+    void registrar(Company company);
 
-    void modificar (Company company);
+   /* void modificar (Company company);
 
     void eliminar(int idCompany);
 
