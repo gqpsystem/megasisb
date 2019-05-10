@@ -52,12 +52,12 @@ public class CompanyServiceImpl implements ICompanyService {
         return null;
     }
 
-    /*@Override
+    @Override
     public void registrar(Company company) {
         dao.save(company);
     }
 
-    @Override
+    /*@Override
     public void modificar(Company company) {
         dao.save(company);
     }
