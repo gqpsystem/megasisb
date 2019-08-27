@@ -2,6 +2,10 @@
 package com.megacenter.model;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +14,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 @Table(name = "producto")
@@ -60,17 +68,49 @@ public class Producto {
     private Categoria categoria ;
     
    
-    @ManyToOne
-    @JoinColumn (name = "id_dolencia")
-    private Dolencia dolencia ;
     
     @ManyToOne
     @JoinColumn (name = "id_unidadmedida")
     private UnidadMedida unidadMedida ;
-
+    
+    @OneToMany(mappedBy = "producto", cascade = {CascadeType.ALL }, orphanRemoval = true)
+    private List<DetalleDolenciaProducto> detalleDolencia=new ArrayList<>();
+    
     public Producto() {
     }
+    
+    public void actualizar(){
+        for (DetalleDolenciaProducto dato : detalleDolencia) {
+            dato.setProducto(this);
+        }
+    }
 
+
+    public void addDetalleDolenciaProducto(DetalleDolenciaProducto detalleDolenciaProducto ){
+        detalleDolencia.add(detalleDolenciaProducto);
+        detalleDolenciaProducto.setProducto(this);
+    }
+    
+    public void removeDetalleDolenciaProducto(DetalleDolenciaProducto detalleDolenciaProducto){
+        detalleDolencia.remove(detalleDolenciaProducto);
+        detalleDolenciaProducto.setProducto(null);
+    }
+
+    public List<DetalleDolenciaProducto> getDetalleDolencia() {
+        return detalleDolencia;
+    }
+
+    public void setDetalleDolencia(List<DetalleDolenciaProducto> detalleDolencia) {
+        this.detalleDolencia = detalleDolencia;
+    }
+    
+    
+
+    
+
+   
+
+    
     public String getImagen() {
         return imagen;
     }
@@ -187,14 +227,7 @@ public class Producto {
    
     
     
-    public Dolencia getDolencia() {
-        return dolencia;
-    }
-
-    public void setDolencia(Dolencia dolencia) {
-        this.dolencia = dolencia;
-    }
-
+  
     public UnidadMedida getUnidadMedida() {
         return unidadMedida;
     }

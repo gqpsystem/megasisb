@@ -105,6 +105,7 @@ public class ProductoController {
         }
 
         service.registrar(producto);
+        
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(producto.getIdProducto()).toUri();
 

@@ -1,8 +1,10 @@
 
 package com.megacenter.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,9 +36,12 @@ public class DetalleCompra {
     @Column ( name = "precioTotal" , precision = 16 ,scale = 2)
     private Double precioTotal ;
     
-    @JoinColumn (name = "idCompra")
-    @ManyToOne
-    private Compra compra ;
+    
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_compra",nullable = false )
+    private Compra compra;
+    
     
     @JoinColumn ( name = "idProducto")
     @ManyToOne
@@ -44,7 +49,7 @@ public class DetalleCompra {
 
     public DetalleCompra() {
     }
-
+    
     public int getIdDetalleCompra() {
         return idDetalleCompra;
     }

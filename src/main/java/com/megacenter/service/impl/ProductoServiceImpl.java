@@ -3,6 +3,7 @@ package com.megacenter.service.impl;
 import java.util.List;
 
 import com.megacenter.dao.IProductoDAO;
+import com.megacenter.model.DetalleDolenciaProducto;
 import com.megacenter.model.Producto;
 import com.megacenter.service.IProductoService;
 
@@ -17,11 +18,13 @@ public class ProductoServiceImpl implements IProductoService {
 
     @Override
     public void registrar(Producto producto) {
+        producto.actualizar();
         dao.save(producto);
     }
 
     @Override
     public void modificar(Producto producto) {
+        producto.actualizar();
         dao.save(producto);
     }
 
